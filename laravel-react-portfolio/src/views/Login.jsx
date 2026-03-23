@@ -1,4 +1,6 @@
 
+import { Link } from "react-router-dom";
+
 export default function Login() {
 
     const Submit = (ev) => {
@@ -13,6 +15,9 @@ export default function Login() {
                     <input type="email" placeholder="Email" />
                     <input type="password" placeholder="Password" />
                     <button className="btn btn-block">Login</button>
+                    <p className="message">
+                        Not Registered? <Link to='/register'>Create a new account.</Link>
+                    </p>
                 </form>
             </div>
         
