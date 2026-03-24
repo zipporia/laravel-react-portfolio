@@ -13,7 +13,7 @@ axiosClient.interceptors.request.use((config) => {
 axiosClient.interceptors.request.use(
     (response) => {
         return response;
-    }
+    },
     (error) => {
         const { response } = error;
         if (response.status === 401) {
