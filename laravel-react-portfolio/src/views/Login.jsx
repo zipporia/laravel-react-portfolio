@@ -11,6 +11,9 @@ export default function Login() {
     return (
         <div className="login-signup-form animated fadeinDown">
             <div className="form">
+                <h1 className="title">
+                    Login To Your Account
+                </h1>
                 <form onSubmit={Submit}>
                     <input type="email" placeholder="Email" />
                     <input type="password" placeholder="Password" />
