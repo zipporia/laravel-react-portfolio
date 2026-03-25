@@ -6,12 +6,28 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    // this function is the responsible for validating users credentials, authenticating users, and generation token
     public function login(LoginRequest $request) 
     {
+        $data = $reqeust->validated();
 
+        if(!Auth::attempt($data)){
+            return response([
+                'message' => 'email or password are wrong'
+            ]);
+        }
+
+        $user = Auth::user();
+        $token = $user->createToken('main')->plainTextToken;
+
+        return response()->json([
+            'user' => $user,
+            'token' => $token
+        ]);
     }
 
     public function register(RegisterRequest $request) 
@@ -24,7 +40,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password'])
         ]);
 
-        $token = $user->create_token('main')->plainTextToken;
+        $token = $user->createToken('main')->plainTextToken;
 
         return response()->json([
             'user' => $user,
