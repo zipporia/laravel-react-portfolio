@@ -20,7 +20,7 @@ export default function Register() {
             password: passowrdRef.current.value,
         }
 
-        axiosClient.post("register",payload).then(({data}) => {
+        axiosClient.post("/register",payload).then(({data}) => {
             setUser(data.User);
             setToken(data.Token);
         }).catch(err => {
@@ -29,6 +29,7 @@ export default function Register() {
                 console.log(response.data.errors);
             }
         })
+
     }
 
 
