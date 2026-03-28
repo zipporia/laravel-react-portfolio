@@ -22,9 +22,8 @@ export default function Register() {
         }
 
         axiosClient.post("/register",payload).then(({data}) => {
-
-            setUser(data.User);
-            setToken(data.Token);
+            setUser(data.user);
+            setToken(data.token);
         }).catch(err => {
             const response = err.response;
             if(response && response.status === 422){
