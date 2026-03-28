@@ -1,7 +1,7 @@
 
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import axiosClient from "../axiosClient";
+import axiosClient from "../axiosClient.js";
 import { useStateContext } from "../contexts/contextprovider";
 
 export default function Register() {
@@ -14,6 +14,7 @@ export default function Register() {
 
     const Submit = (ev) => {
         ev.preventDefault();
+    
         const payload = {
             name: nameRef.current.value,
             email: emailRef.current.value,
@@ -21,6 +22,7 @@ export default function Register() {
         }
 
         axiosClient.post("/register",payload).then(({data}) => {
+
             setUser(data.User);
             setToken(data.Token);
         }).catch(err => {
