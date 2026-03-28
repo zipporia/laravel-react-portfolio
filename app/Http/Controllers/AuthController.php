@@ -15,7 +15,7 @@ class AuthController extends Controller
     // this function is the responsible for validating users credentials, authenticating users, and generation token
     public function login(LoginRequest $request) 
     {
-        $data = $reqeust->validated();
+        $data = $request->validated();
 
         if(!Auth::attempt($data)){
             return response([
