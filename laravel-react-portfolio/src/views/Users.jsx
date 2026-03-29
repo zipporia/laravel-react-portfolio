@@ -10,7 +10,7 @@ export default function Users() {
     useEffect(() => {
         setLoading(true);
         axiosClient.get('/users').then(({data}) => {
-    
+            setLoading(false)
             setUsers(data.data)
         })
         .catch(() => {
@@ -18,7 +18,6 @@ export default function Users() {
         })
     },[])
 
-        console.log(users)
     return (
         <div>
             <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}} >
@@ -46,13 +45,18 @@ export default function Users() {
                     }
                     {!loading &&
                         <tbody>
-                            {users.map(u => {
+                            {users.map(u => (
                                 <tr key={u.id}>
                                     <td>{u.id}</td>
                                     <td>{u.name}</td>
                                     <td>{u.email}</td>
+                                    <td>
+                                        <Link className="btn-edit" to={'/users/'+ u.id}>Edit</Link>
+                                        &nbsp;
+                                        <button className="btn-delete" onClick={ev => onDeleteClick(u)} >Delete</button>
+                                    </td>
                                 </tr>
-                            })}
+                            ))}
                         </tbody>
                     }
                 </table>
