@@ -30,9 +30,7 @@ export default function Register() {
                 console.log(response.data.errors);
             }
         })
-
     }
-
 
     return (
         <div className="login-signup-form animated fadeinDown">
