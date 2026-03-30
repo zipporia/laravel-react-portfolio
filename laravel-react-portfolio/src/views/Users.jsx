@@ -7,7 +7,22 @@ export default function Users() {
     const [users , setUsers] = useState ([])
     const [loading, setLoading] = useState(false);
 
+    const onDeleteClick = (user) => {
+        if (!window.confirm("Are you sure you want to delete this user?")) {
+            return;
+        }
+        axiosClient.delete(`/users/${user.id}`)
+            .then(() => {
+                getUsers();
+            })
+    
+    }
+
     useEffect(() => {
+        getUsers();
+    },[])
+
+    const getUsers = () => {
         setLoading(true);
         axiosClient.get('/users').then(({data}) => {
             setLoading(false)
@@ -16,7 +31,7 @@ export default function Users() {
         .catch(() => {
             setLoading(false)
         })
-    },[])
+    }
 
     return (
         <div>
