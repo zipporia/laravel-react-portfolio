@@ -22,7 +22,7 @@ export default function UserForm(){
             axiosClient.get(`/users/${id}`)
                 .then(({data}) => {
                     setLoading(false)
-                    setUsers(data)
+                    setUsers(data.data)
                 })
                 .catch(() => {
                     setLoading(false)
@@ -39,11 +39,14 @@ export default function UserForm(){
 
     return(
         <div>
+            {users.id && <h1>Update User: {users.name} </h1> }
+            {!users.id && <h1>New User</h1> }
             {!loading && (
                 <form onSubmit={Submit} >
-                    <input value={users.name} onChange={ev => setUsers({...users, name: ev.target.value})} type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
+                    <input value={users.name} onChange={ev => setUsers({...users, name: ev.target.value})} placeholder="Name" />
+                    <input value={users.email} onChange={ev => setUsers({...users, email: ev.target.value})} placeholder="Email" />
+                    <input onChange={ev => setUsers({...users, password: ev.target.value})} type="password" placeholder="Password" />
+                    <input onChange={ev => setUsers({...users, password_confirmation: ev.target.value})} type="password" placeholder="Password Confirmation" />
                     <button type="submit" className="btn btn-block">Submit</button>
                 </form>
             )}
