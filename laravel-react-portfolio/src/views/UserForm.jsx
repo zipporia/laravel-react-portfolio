@@ -1,7 +1,7 @@
 
 import { useRef } from "react";
 import axiosClient from "../axiosClient"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 
 export default function UserForm(){
@@ -33,7 +33,16 @@ export default function UserForm(){
     const Submit = (ev) => {
         ev.preventDefault();
 
-        console.log(users)
+        if (users.id){
+            axiosClient.put(`/users/${users.id}`, users)
+                .then(({data}) => {
+                    console.log(data)
+                })
+        }
+        else {
+
+        }
+
     
     }
 
@@ -41,15 +50,31 @@ export default function UserForm(){
         <div>
             {users.id && <h1>Update User: {users.name} </h1> }
             {!users.id && <h1>New User</h1> }
-            {!loading && (
-                <form onSubmit={Submit} >
-                    <input value={users.name} onChange={ev => setUsers({...users, name: ev.target.value})} placeholder="Name" />
-                    <input value={users.email} onChange={ev => setUsers({...users, email: ev.target.value})} placeholder="Email" />
-                    <input onChange={ev => setUsers({...users, password: ev.target.value})} type="password" placeholder="Password" />
-                    <input onChange={ev => setUsers({...users, password_confirmation: ev.target.value})} type="password" placeholder="Password Confirmation" />
-                    <button type="submit" className="btn btn-block">Submit</button>
-                </form>
-            )}
+
+            <div className="card animated fadeInDown">
+                {loading && (
+                    <div className="text-center">
+                        Loading..
+                    </div>
+                )}
+                {errors && (
+                    <div>
+                        {Object.keys(errors).map(key => (
+                            <p key={key}>{errors[key][0]}</p>
+                        ))}
+                    </div>
+                )}
+                {!loading && (
+                    <form onSubmit={Submit} >
+                        <input value={users.name} onChange={ev => setUsers({...users, name: ev.target.value})} placeholder="Name" />
+                        <input value={users.email} onChange={ev => setUsers({...users, email: ev.target.value})} placeholder="Email" />
+                        <input onChange={ev => setUsers({...users, password: ev.target.value})} type="password" placeholder="Password" />
+                        <input onChange={ev => setUsers({...users, password_confirmation: ev.target.value})} type="password" placeholder="Password Confirmation" />
+                        <button type="submit" className="btn btn-block">Submit</button>
+                    </form>
+                )}
+            </div>
+
 
 
         </div>
