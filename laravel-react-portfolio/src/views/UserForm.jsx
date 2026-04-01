@@ -1,7 +1,7 @@
 
 import { useRef } from "react";
 import axiosClient from "../axiosClient"
-import { Navigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 
 export default function UserForm(){
@@ -15,7 +15,7 @@ export default function UserForm(){
     })
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState(null);
-
+    const navigate = useNavigate();
     if(id){
         useEffect(() => {
             setLoading(true)
@@ -36,11 +36,26 @@ export default function UserForm(){
         if (users.id){
             axiosClient.put(`/users/${users.id}`, users)
                 .then(({data}) => {
-                    console.log(data)
+                    navigate('/users')
+                })
+                .catch(err => {
+                    const response = err.response;
+                    if (response && response.status === 422) {
+                        setErrors(response.data.errors)
+                    }
                 })
         }
         else {
-
+            axiosClient.post('/users', users)
+                .then(({data}) => {
+                    navigate('/users')
+                })
+                .catch(err => {
+                    const response = err.response;
+                    if (response && response.status === 422) {
+                        setErrors(response.data.errors)
+                    }
+                })
         }
 
     
