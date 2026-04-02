@@ -6,6 +6,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import Users from './views/Users';
 import UserForm from './views/UserForm';
+import Store from './views/Store';
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: '/users/:id',
                 element: <UserForm key="UserUpdate" />
+            },
+            {
+                path: '/store',
+                element: <Store />
             }
         ]
 
