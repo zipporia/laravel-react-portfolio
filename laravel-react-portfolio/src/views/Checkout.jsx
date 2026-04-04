@@ -1,3 +1,12 @@
+    // <link rel="stylesheet" href="styles/shared/general.css">
+    // <link rel="stylesheet" href="styles/pages/checkout/checkout-header.css">
+    // <link rel="stylesheet" href="styles/pages/checkout/checkout.css"></link>
+
+import "../StoreAssets/styles/pages/checkout/checkout.css"
+import "../StoreAssets/styles/pages/checkout/checkout-header.css"
+import "../StoreAssets/styles/shared/general.css"
+
+
 export default function Checkout() {
     return (
         <>

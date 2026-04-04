@@ -1,9 +1,12 @@
 
+import '../StoreAssets/styles/shared/general.css'
+import '../StoreAssets/styles/shared/header.css'
+import '../StoreAssets/styles/pages/index.css'
+
 import logo from '../StoreAssets/images/logo-white.png';
 import mobileLogo from '../StoreAssets/images/mobile-logo-white.png';
 import searchIcon from '../StoreAssets/images/icons/search-icon.png';
 import cartIcon from '../StoreAssets/images/icons/cart-icon.png';
-
 
 export default function Store() {
     return (
