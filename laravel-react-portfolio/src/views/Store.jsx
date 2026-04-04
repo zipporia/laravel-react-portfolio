@@ -9,22 +9,22 @@ export default function Store() {
     return (
         <>
             <div className="header">
-                <div className="left-section">
+                {/* <div className="left-section">
                     <a href="index.html" className="header-link">
                     <img className="logo"
                         src={logo}/>
                     <img className="mobile-logo"
                         src={mobileLogo} />
                     </a>
-                </div>
+                </div> */}
 
-                <div className="middle-section">
+                {/* <div className="middle-section">
                     <input className="search-bar" type="text" placeholder="Search" />
 
                     <button className="search-button">
                     <img className="search-icon" src={searchIcon}/>
                     </button>
-                </div>
+                </div> */}
 
                 <div className="right-section">
                     <a className="orders-link header-link" href="orders.html">

@@ -7,6 +7,7 @@ import Register from './views/Register';
 import Users from './views/Users';
 import UserForm from './views/UserForm';
 import Store from './views/Store';
+import Checkout from './views/Checkout';
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: '/store',
                 element: <Store />
+            },
+            {
+                path: '/checkout',
+                element: <Checkout />
             }
         ]
 
