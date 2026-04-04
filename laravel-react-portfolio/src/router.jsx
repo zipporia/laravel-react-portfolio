@@ -8,6 +8,7 @@ import Users from './views/Users';
 import UserForm from './views/UserForm';
 import Store from './views/Store';
 import Checkout from './views/Checkout';
+import Orders from './views/Orders';
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: '/checkout',
                 element: <Checkout />
+            },
+            {
+                path: '/orders',
+                element: <Orders />
             }
         ]
 

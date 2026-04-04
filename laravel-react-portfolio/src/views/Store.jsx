@@ -11,6 +11,7 @@ import cartIcon from '../StoreAssets/images/icons/cart-icon.png';
 export default function Store() {
     return (
         <>
+            <title>Store</title>
             <div className="header">
                 {/* <div className="left-section">
                     <a href="index.html" className="header-link">
