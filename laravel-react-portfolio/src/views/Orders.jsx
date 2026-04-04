@@ -6,6 +6,7 @@ import "../StoreAssets/styles/pages/orders.css"
 export default function Orders() {
     return (
         <>
+        <title>Orders</title>
             <div class="header">
                 <div class="left-section">
                     <a href="index.html" class="header-link">

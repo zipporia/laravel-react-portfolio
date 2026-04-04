@@ -9,6 +9,7 @@ import UserForm from './views/UserForm';
 import Store from './views/Store';
 import Checkout from './views/Checkout';
 import Orders from './views/Orders';
+import Tracking from './views/Tracking';
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: '/orders',
                 element: <Orders />
+            },
+            {
+                path: 'tracking',
+                element: <Tracking />
             }
         ]
 
