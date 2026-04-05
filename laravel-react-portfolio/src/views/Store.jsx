@@ -1,4 +1,6 @@
 
+import { Link } from 'react-router-dom';
+
 import '../StoreAssets/styles/shared/general.css'
 import '../StoreAssets/styles/shared/header.css'
 import '../StoreAssets/styles/pages/index.css'
@@ -7,6 +9,8 @@ import logo from '../StoreAssets/images/logo-white.png';
 import mobileLogo from '../StoreAssets/images/mobile-logo-white.png';
 import searchIcon from '../StoreAssets/images/icons/search-icon.png';
 import cartIcon from '../StoreAssets/images/icons/cart-icon.png';
+
+
 
 export default function Store() {
     return (
@@ -31,16 +35,16 @@ export default function Store() {
                 </div> */}
 
                 <div className="right-section">
-                    <a className="orders-link header-link" href="orders.html">
+                    <Link className="orders-link header-link" to="/orders">
 
                     <span className="orders-text">Orders</span>
-                    </a>
+                    </Link>
 
-                    <a className="cart-link header-link" href="checkout.html">
+                    <Link className="cart-link header-link" to="/checkout">
                     <img className="cart-icon" src={cartIcon} />
                     <div className="cart-quantity">3</div>
                     <div className="cart-text">Cart</div>
-                    </a>
+                    </Link>
                 </div>
                 </div>
 

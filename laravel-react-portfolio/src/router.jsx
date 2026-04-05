@@ -41,7 +41,7 @@ const router = createBrowserRouter([
                 element: <Orders />
             },
             {
-                path: 'tracking',
+                path: '/tracking',
                 element: <Tracking />
             }
         ]
