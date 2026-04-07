@@ -9,6 +9,7 @@ import cartIcon from '../StoreAssets/images/icons/cart-icon.png';
 import { useEffect } from 'react';
 import { products } from '../../starting-code/data/products';
 
+
 export default function Store() {
     useEffect(() => {
         console.log(products);
@@ -54,17 +55,17 @@ export default function Store() {
                         return (
                             <div key={product.id} className="product-container">
                                 <div className="product-image-container">
-                                    <img className="product-image" src="StoreAssets/images/products/athletic-cotton-socks-6-pairs.jpg" />
+                                    <img className="product-image" src={product.image} />
                                 </div>
 
                                 <div className="product-name limit-text-to-2-lines">{product.name}</div>
 
                                 <div className="product-rating-container">
-                                    <img className="product-rating-stars" src="StoreAssets/images/ratings/rating-45.png" />
+                                    <img className="product-rating-stars" src={`/StoreAssets/images/ratings/rating-45.png`} />
                                     <div className="product-rating-count link-primary">87</div>
                                 </div>
 
-                                <div className="product-price">$10.90</div>
+                                <div className="product-price">{product.priceCents}</div>
 
                                 <div className="product-quantity-container">
                                     <select>
