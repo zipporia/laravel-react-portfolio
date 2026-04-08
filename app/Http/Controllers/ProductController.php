@@ -23,7 +23,9 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        //
+        $user = $reqeust->user();
+
+        return Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
     }
 
     /**
