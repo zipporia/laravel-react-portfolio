@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\User::class, 'user_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->string('image');
+            $table->string('name');
+
+            $table->decimal('rating_stars', 2, 1);
+            $table->integer('rating_count');
+
+            $table->integer('price_cents');
+            $table->json('keywords');
+
             $table->timestamps();
         });
     }
