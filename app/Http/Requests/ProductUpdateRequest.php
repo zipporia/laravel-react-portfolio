@@ -12,7 +12,10 @@ class ProductUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $user = $this->user();
+        $product = $this->route('product'); //this will give product model
+
+        return $user && $product && $user->id === $product->user_id;
     }
 
     /**
@@ -23,7 +26,13 @@ class ProductUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|string',
+            'rating.stars' => 'nullable|numeric|min:0|max:5',
+            'rating.count' => 'nullable|integer|min:0',
+            'price_cents' => 'required|integer|min:0',
+            'keywords' => 'nullable|array',
+            'keywords.*' => 'string',
         ];
     }
 }
