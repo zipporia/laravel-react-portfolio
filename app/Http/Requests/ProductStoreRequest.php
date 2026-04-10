@@ -12,7 +12,14 @@ class ProductStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => $this->user()->id
+        ]);
     }
 
     /**
@@ -23,7 +30,13 @@ class ProductStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|string',
+            'rating.stars' => 'nullable|numeric|min:0|max:5',
+            'rating.count' => 'nullable|integer|min:0',
+            'price_cents' => 'required|integer|min:0',
+            'keywords' => 'nullable|array',
+            'keywords.*' => 'string',
         ];
     }
 }
