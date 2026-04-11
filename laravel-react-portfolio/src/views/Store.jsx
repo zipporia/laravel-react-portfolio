@@ -7,12 +7,23 @@ import '../StoreAssets/styles/shared/header.css';
 import cartIcon from '../StoreAssets/images/icons/cart-icon.png';
 
 import { useEffect } from 'react';
-import { products } from '../../starting-code/data/products';
+// import { products } from '../../starting-code/data/products';
+import axiosClient from '../axiosClient';
+import { useState } from 'react';
 
 
 export default function Store() {
+
+    const [products, setProducts] = useState([]);
+
     useEffect(() => {
-        console.log(products);
+        // axiosClient.get('product').then((data)=>{
+        //     setProducts(data.data)
+        // })
+
+        axiosClient.get('product').then((response) => {
+            setProducts(response.data.data); // 👈 important
+        })
     }, []);
 
     return (

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Http\Resources\ProductResource;
+use App\Models\Product;
 
 
 class ProductController extends Controller
@@ -18,9 +19,7 @@ class ProductController extends Controller
         $user = $request->user();
 
         return ProductResource::collection(
-            Product::where('user_id', $user->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10)
+            Product::orderBy('created_at', 'desc')->get()
         );
     }
 
@@ -30,6 +29,9 @@ class ProductController extends Controller
     public function store(ProductStoreRequest $request)
     {
         $data = $request->validated();
+
+
+
     }
 
     /**
