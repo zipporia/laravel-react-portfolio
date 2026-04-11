@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
-
+use App\Http\Resources\ProductResource;
 
 
 class ProductController extends Controller
@@ -13,9 +13,15 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+
+        return ProductResource::collection(
+            Product::where('user_id', $user->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10)
+        );
     }
 
     /**
@@ -23,9 +29,7 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        $user = $reqeust->user();
-
-        return Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+        $data = $request->validated();
     }
 
     /**
