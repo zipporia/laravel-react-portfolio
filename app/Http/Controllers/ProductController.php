@@ -30,7 +30,13 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
+        if (isset($data['image'])) {
+            $relativePath = $this->saveImage($data['image']);
+        }
 
+        $product = Product::create($data);
+
+        return new ProductResource($product);
 
     }
 

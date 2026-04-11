@@ -17,12 +17,8 @@ export default function Store() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        // axiosClient.get('product').then((data)=>{
-        //     setProducts(data.data)
-        // })
-
         axiosClient.get('product').then((response) => {
-            setProducts(response.data.data); // 👈 important
+            setProducts(response.data.data);
         })
     }, []);
 
