@@ -8,6 +8,9 @@ use App\Http\Requests\ProductUpdateRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+
 
 class ProductController extends Controller
 {
@@ -62,5 +65,44 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    private function saveImage($image)
+    {   
+        // checi if image is valid base64 string
+        if(preg_match('/^data:image\/(\w+);base64,/', $image, $type)) { 
+            // Take out the base64 encoded
+            $image = substr($image, strpos($image,',') + 1);
+
+            // Get file extension
+            $type = strtolower($type[1]); // jpg, png, gif
+
+            // check if file is an image
+            if(!in_array($type, ['jpg', 'jpeg', 'gif', 'png'])) {
+                throw new \Exception('invalid image type');
+            }
+
+            $image = str_replace(' ', '+', $image);
+            $image = base64_decode($image);
+
+            if($image === false){
+                throw new \Exception('base64_decode failed');
+            }
+        } else {
+            throw new \Exception('did not match data URI with image data');
+        }
+
+        $dir = 'images/';
+        $file = Str::random() . '.' . $type;
+        $absolutePath = public_path($dir);
+        $relativePath = $dir . $file;
+        if(!File::exists($absolutePath)){
+            File::makeDirectory($absolutePath, 0755, true);
+        }
+        file_put_contents($relativePath, $image);
+
+        return $relativePath;
+
     }
 }
