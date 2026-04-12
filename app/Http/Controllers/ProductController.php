@@ -48,15 +48,32 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductUpdateRequest $request, string $id)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
-        //
+        $data = $request->validated();
+        
+        // check if image was given and save on local file system
+        if (isset($data['image'])) {
+            $relativePath = $this->saveImage($data['image']);
+            $data['image'] = $relativePath;
+
+            // if there is an old image, delete it
+            if ($product->image) {
+                $absolutePath = public_path($product->image);
+                File::delete($absolutePath);
+            }
+        }
+        // update survey in the database
+        $product->update($data);
+
+        return response()->json($product, 200);
     }
 
     /**
