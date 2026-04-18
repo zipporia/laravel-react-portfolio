@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             {
                 path: '/tracking',
                 element: <Tracking />
-            }
+            },
         ]
 
     },
