@@ -2,6 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../contexts/contextprovider";
 import { useEffect } from "react";
 import axiosClient from "../axiosClient";
+import { BeakerIcon } from '@heroicons/react/24/solid'
 
 export default function DefaultLayout() {
     const {user, token, setUser, setToken} = useStateContext();
