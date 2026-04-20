@@ -11,6 +11,8 @@ import Checkout from './views/Checkout';
 import Orders from './views/Orders';
 import Tracking from './views/Tracking';
 
+import ProductForm from './views/admin/ProductForm';
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
                 element: <Store />
             },
             {
+                path: '/store/new',
+                element: <ProductForm key="ProductCreate" />
+            },
+            {
+                path: '/store/:id',
+                element: <ProductForm key="ProductUpdate" />
+            },
+            {
                 path: '/checkout',
                 element: <Checkout />
             },
@@ -44,6 +54,7 @@ const router = createBrowserRouter([
                 path: '/tracking',
                 element: <Tracking />
             },
+
         ]
 
     },
