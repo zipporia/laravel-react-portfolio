@@ -21,10 +21,10 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     Route::apiResource('/users',UserController::class);
-    // Route::apiResource('/product',ProductController::class);
+    Route::apiResource('/product',ProductController::class);
 });
 
-Route::apiResource('/product', ProductController::class);
+
 
 // Route::apiResource('product', ProductController::class); // for testing
 

@@ -10,9 +10,12 @@ export default function ProductForm() {
 
         axiosClient.post('/product', {
             id: 'test',
-            image: 'testimage',
+            image: '',
             name: 'test name',
-            priceCents: '11111',
+            price_cents: '11111',
+            rating_stars: '4',
+            rating_count: '55',
+            keywords: [],
         })
     }
 

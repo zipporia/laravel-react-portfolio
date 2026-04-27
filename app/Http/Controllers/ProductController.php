@@ -32,8 +32,6 @@ class ProductController extends Controller
     public function store(ProductStoreRequest $request)
     {
         $data = $request->validated();
-        return $data;
-
 
         if (isset($data['image'])) {
             $relativePath = $this->saveImage($data['image']);

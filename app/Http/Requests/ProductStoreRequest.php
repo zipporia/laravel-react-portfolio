@@ -30,10 +30,11 @@ class ProductStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'image' => 'nullable|string',
-            'rating.stars' => 'nullable|numeric|min:0|max:5',
-            'rating.count' => 'nullable|integer|min:0',
+            'rating_stars' => 'nullable|numeric|min:0|max:5',
+            'rating_count' => 'nullable|integer|min:0',
             'price_cents' => 'required|integer|min:0',
             'keywords' => 'nullable|array',
             'keywords.*' => 'string',
