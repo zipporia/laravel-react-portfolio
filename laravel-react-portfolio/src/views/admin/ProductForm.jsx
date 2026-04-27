@@ -15,7 +15,7 @@ export default function ProductForm() {
             price_cents: '11111',
             rating_stars: '4',
             rating_count: '55',
-            keywords: [],
+            keywords: ['socks', 'sports', 'apparel'],
         })
     }
 

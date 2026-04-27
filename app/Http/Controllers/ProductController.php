@@ -37,6 +37,8 @@ class ProductController extends Controller
             $relativePath = $this->saveImage($data['image']);
         }
 
+        $data['keywords'] = json_encode($data['keywords']);
+
         $product = Product::create($data);
 
         return new ProductResource($product);
