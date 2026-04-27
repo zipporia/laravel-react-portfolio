@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\User::class, 'user_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('name');
 
             $table->decimal('rating_stars', 2, 1);

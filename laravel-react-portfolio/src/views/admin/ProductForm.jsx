@@ -1,14 +1,28 @@
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import axiosClient from '../../axiosClient';
 
 export default function ProductForm() {
+
+
+    const onSubmit = (ev) => {
+        ev.preventDefault();
+
+        axiosClient.post('/product', {
+            id: 'test',
+            image: 'testimage',
+            name: 'test name',
+            priceCents: '11111',
+        })
+    }
+
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                        <div className="col-span-full">
+                        {/* <div className="col-span-full">
                             <label htmlFor="photo" className="block text-sm/6 font-medium text-gray-900">
                                 Product Photo
                             </label>
@@ -21,7 +35,7 @@ export default function ProductForm() {
                                     Change
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -75,7 +89,7 @@ export default function ProductForm() {
 
 
                         <div className="sm:col-span-6">
-                            <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
+                            <label htmlFor="price_cents" className="block text-sm/6 font-medium text-gray-900">
                                 Price Cents
                             </label>
                             <div className="mt-2">
@@ -120,6 +134,7 @@ export default function ProductForm() {
                 <button type="button" className="text-sm/6 font-semibold text-gray-900">
                     Cancel
                 </button>
+    
                 <button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
