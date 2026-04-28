@@ -1,21 +1,40 @@
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import axiosClient from '../../axiosClient';
+import { useState } from 'react';
 
 export default function ProductForm() {
 
+    const [product, setProduct] = useState({
+        image: null,
+        image_url: null,
+        name: "",
+        price_cents: "",
+        rating_stars: "",
+        rating_count: "",
+        keywords: [],
+    });
+
+    const onImageChoose = (ev) => {
+        const file = ev.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            setProduct({
+                ...product,
+                image: file,
+                image_url: reader.result
+            })
+
+            ev.target.value = ""
+        }
+        reader.readAsDataURL(file);
+    }
+
     const onSubmit = (ev) => {
         ev.preventDefault();
+        console.log()
 
-        // axiosClient.post('/product', {
-        //     id: 'test',
-        //     image: '',
-        //     name: 'test name',
-        //     price_cents: '11111',
-        //     rating_stars: '4',
-        //     rating_count: '55',
-        //     keywords: ['socks', 'sports', 'apparel'],
-        // })
     }
 
     return (
@@ -25,13 +44,29 @@ export default function ProductForm() {
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
                         <div className="col-span-full">
-                            <label htmlFor="photo" className="block text-sm/6 font-medium text-gray-900">
+                            <label htmlFor="" className="block text-sm/6 font-medium text-gray-900">
                                 Product Photo
                             </label>
                             <div className="mt-2 flex items-center gap-x-3">
-                                <UserCircleIcon aria-hidden="true" className="size-12 text-gray-300" />
+                                
+
+                                {product.image_url && (
+                                    <img src={product.image_url} className="h-20" />
+                                )}
+
+                                {!product.image_url && (
+                                    <UserCircleIcon aria-hidden="true" className="size-12 text-gray-300" />
+                                )}
+
+                                <input
+                                    type="file"
+                                    id="photo"
+                                    onChange={onImageChoose}
+                                    className="hidden"
+                                />
                                 <button
                                     type="button"
+                                    onClick={() => document.getElementById('photo').click()}
                                     className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50"
                                 >
                                     Change
