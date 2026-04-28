@@ -35,6 +35,7 @@ class ProductController extends Controller
 
         if (isset($data['image'])) {
             $relativePath = $this->saveImage($data['image']);
+            $data['image'] = $relativePath;
         }
 
         $data['keywords'] = json_encode($data['keywords']);

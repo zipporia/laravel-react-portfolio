@@ -4,28 +4,27 @@ import axiosClient from '../../axiosClient';
 
 export default function ProductForm() {
 
-
     const onSubmit = (ev) => {
         ev.preventDefault();
 
-        axiosClient.post('/product', {
-            id: 'test',
-            image: '',
-            name: 'test name',
-            price_cents: '11111',
-            rating_stars: '4',
-            rating_count: '55',
-            keywords: ['socks', 'sports', 'apparel'],
-        })
+        // axiosClient.post('/product', {
+        //     id: 'test',
+        //     image: '',
+        //     name: 'test name',
+        //     price_cents: '11111',
+        //     rating_stars: '4',
+        //     rating_count: '55',
+        //     keywords: ['socks', 'sports', 'apparel'],
+        // })
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form method="POST" onSubmit={onSubmit}>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                        {/* <div className="col-span-full">
+                        <div className="col-span-full">
                             <label htmlFor="photo" className="block text-sm/6 font-medium text-gray-900">
                                 Product Photo
                             </label>
@@ -38,7 +37,7 @@ export default function ProductForm() {
                                     Change
                                 </button>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
 
