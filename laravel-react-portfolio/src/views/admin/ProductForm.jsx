@@ -112,6 +112,7 @@ export default function ProductForm() {
                                     id="rating_stars"
                                     name="rating_stars"
                                     type="text"
+                                    value={product.rating_stars}
                                     onChange={handleChange}
                                     autoComplete="family-name"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -128,6 +129,8 @@ export default function ProductForm() {
                                     id="rating-count"
                                     name="rating-count"
                                     type="text"
+                                    value={product.rating_count}
+                                    onChange={handleChange}
                                     autoComplete="family-name"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 />
@@ -144,6 +147,8 @@ export default function ProductForm() {
                                     id="price_cents"
                                     name="price_cents"
                                     type="number"
+                                    value={product.price_cents}
+                                    onChange={handleChange}
                                     autoComplete="email"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 />
@@ -158,6 +163,8 @@ export default function ProductForm() {
                                 <select
                                     id="keywords"
                                     name="keywords"
+                                    value={product.keywords}
+                                    onChange={handleChange}
                                     autoComplete="country-name"
                                     className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 >
