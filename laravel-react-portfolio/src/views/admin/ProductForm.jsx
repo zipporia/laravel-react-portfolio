@@ -1,17 +1,14 @@
-import { ChevronDownIcon } from '@heroicons/react/16/solid';
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
-import axiosClient from '../../axiosClient';
+import { UserCircleIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 
 export default function ProductForm() {
-
     const [product, setProduct] = useState({
         image: null,
         image_url: null,
-        name: "",
-        price_cents: "",
-        rating_stars: "",
-        rating_count: "",
+        name: '',
+        price_cents: '',
+        rating_stars: '',
+        rating_count: '',
         keywords: [],
     });
 
@@ -23,54 +20,53 @@ export default function ProductForm() {
             setProduct({
                 ...product,
                 image: file,
-                image_url: reader.result
-            })
+                image_url: reader.result,
+            });
 
-            ev.target.value = ""
-        }
+            ev.target.value = '';
+        };
         reader.readAsDataURL(file);
-    }
+    };
 
     const handleChange = (ev) => {
         setProduct({
             ...product,
-            [ev.target.name]: ev.target.value
-        })
-    }
+            [ev.target.name]: ev.target.value,
+        });
+    };
+
+    const handleKeywordChange = (ev) => {
+        const value = ev.target.value;
+        const checked = ev.target.checked;
+
+        setProduct(prev => ({
+            ...prev,
+            keywords: checked
+                ? [...prev.keywords, value]
+                : prev.keywords.filter(k => k !== value)
+        }));
+    };
 
     const onSubmit = (ev) => {
         ev.preventDefault();
-        console.log(product)
-
-    }
+        console.log(product);
+    };
 
     return (
         <form method="POST" onSubmit={onSubmit}>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-
                         <div className="col-span-full">
                             <label htmlFor="" className="block text-sm/6 font-medium text-gray-900">
                                 Product Photo
                             </label>
                             <div className="mt-2 flex items-center gap-x-3">
-                                
+                                {product.image_url && <img src={product.image_url} className="h-20" />}
 
-                                {product.image_url && (
-                                    <img src={product.image_url} className="h-20" />
-                                )}
+                                {!product.image_url && <UserCircleIcon aria-hidden="true" className="size-12 text-gray-300" />}
 
-                                {!product.image_url && (
-                                    <UserCircleIcon aria-hidden="true" className="size-12 text-gray-300" />
-                                )}
-
-                                <input
-                                    type="file"
-                                    id="photo"
-                                    onChange={onImageChoose}
-                                    className="hidden"
-                                />
+                                <input type="file" id="photo" onChange={onImageChoose} className="hidden" />
                                 <button
                                     type="button"
                                     onClick={() => document.getElementById('photo').click()}
@@ -84,7 +80,6 @@ export default function ProductForm() {
                 </div>
 
                 <div className="border-b border-gray-900/10 pb-12">
-
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-6">
                             <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
@@ -137,7 +132,6 @@ export default function ProductForm() {
                             </div>
                         </div>
 
-
                         <div className="sm:col-span-6">
                             <label htmlFor="price_cents" className="block text-sm/6 font-medium text-gray-900">
                                 Price Cents
@@ -155,7 +149,38 @@ export default function ProductForm() {
                             </div>
                         </div>
 
-                        <div className="sm:col-span-6">
+                        <div className="sm:col-span-1">
+                            <label className="block text-sm font-medium text-gray-900">Keywords</label>
+
+                            <div className="mt-2 space-y-2">
+                                <label className="flex items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        value="sports"
+                                        checked={product.keywords.includes('sports')}
+                                        onChange={handleKeywordChange}
+                                    />
+                                    Sports
+                                </label>
+
+                                <label className="flex items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        value="apparel"
+                                        checked={product.keywords.includes('apparel')}
+                                        onChange={handleKeywordChange}
+                                    />
+                                    Apparel
+                                </label>
+
+                                <label className="flex items-center gap-2">
+                                    <input type="checkbox" value="mens" checked={product.keywords.includes('mens')} onChange={handleKeywordChange} />
+                                    Men's
+                                </label>
+                            </div>
+                        </div>
+
+                        {/* <div className="sm:col-span-6">
                             <label htmlFor="keywords" className="block text-sm/6 font-medium text-gray-900">
                                 Keywords
                             </label>
@@ -177,18 +202,16 @@ export default function ProductForm() {
                                     className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
                                 />
                             </div>
-                        </div>
-
+                        </div> */}
                     </div>
                 </div>
-
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
                 <button type="button" className="text-sm/6 font-semibold text-gray-900">
                     Cancel
                 </button>
-    
+
                 <button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
