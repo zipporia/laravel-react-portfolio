@@ -149,7 +149,7 @@ export default function ProductForm() {
                             </div>
                         </div>
 
-                        <div className="sm:col-span-1">
+                        <div className="sm:col-span-6">
                             <label className="block text-sm font-medium text-gray-900">Keywords</label>
 
                             <div className="mt-2 space-y-2">
@@ -159,6 +159,7 @@ export default function ProductForm() {
                                         value="sports"
                                         checked={product.keywords.includes('sports')}
                                         onChange={handleKeywordChange}
+                                        className="h-1 w-1 rounded border-gray-300"
                                     />
                                     Sports
                                 </label>
@@ -169,12 +170,18 @@ export default function ProductForm() {
                                         value="apparel"
                                         checked={product.keywords.includes('apparel')}
                                         onChange={handleKeywordChange}
+                                        className="h-1 w-1 rounded border-gray-300"
                                     />
                                     Apparel
                                 </label>
 
                                 <label className="flex items-center gap-2">
-                                    <input type="checkbox" value="mens" checked={product.keywords.includes('mens')} onChange={handleKeywordChange} />
+                                    <input 
+                                        type="checkbox" 
+                                        value="mens" 
+                                        checked={product.keywords.includes('mens')} 
+                                        onChange={handleKeywordChange} 
+                                    />
                                     Men's
                                 </label>
                             </div>
