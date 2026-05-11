@@ -1,7 +1,9 @@
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
+import axiosClient from '../../axiosClient';
 
 export default function ProductForm() {
+
     const [product, setProduct] = useState({
         image: null,
         image_url: null,
@@ -55,7 +57,19 @@ export default function ProductForm() {
 
     const onSubmit = (ev) => {
         ev.preventDefault();
-        console.log(product);
+
+        const payload = { ...product };
+
+        if(payload.image) {
+            payload.image = payload.image_url;
+        }
+
+        delete payload.image_url
+
+        axiosClient.post("/product", payload).then((res) => {
+            console.log(product);
+        })
+    
     };
 
     return (
@@ -122,13 +136,13 @@ export default function ProductForm() {
                         </div>
 
                         <div className="sm:col-span-6">
-                            <label htmlFor="rating-count" className="block text-sm/6 font-medium text-gray-900">
+                            <label htmlFor="rating_count" className="block text-sm/6 font-medium text-gray-900">
                                 Rating Count
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="rating-count"
-                                    name="rating-count"
+                                    id="rating_count"
+                                    name="rating_count"
                                     type="text"
                                     value={product.rating_count}
                                     onChange={handleChange}
