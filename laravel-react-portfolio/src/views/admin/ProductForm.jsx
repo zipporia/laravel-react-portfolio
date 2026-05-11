@@ -47,6 +47,12 @@ export default function ProductForm() {
         }));
     };
 
+    const keywordOptions = [
+        'sports',
+        'apparel',
+        'mens'
+    ];
+
     const onSubmit = (ev) => {
         ev.preventDefault();
         console.log(product);
@@ -153,37 +159,20 @@ export default function ProductForm() {
                             <label className="block text-sm font-medium text-gray-900">Keywords</label>
 
                             <div className="mt-2 space-y-2">
-                                <label className="flex items-center gap-2">
+                                {keywordOptions && keywordOptions.map(keyword => (
+                                    <label key={keyword} className="flex items-center gap-2">
                                     <input
-                                        type="checkbox"
-                                        value="sports"
-                                        checked={product.keywords.includes('sports')}
-                                        onChange={handleKeywordChange}
-                                        className="h-1 w-1 rounded border-gray-300"
-                                    />
-                                    Sports
-                                </label>
+                                            type="checkbox"
+                                            value={keyword}
+                                            checked={product.keywords.includes(keyword)}
+                                            onChange={handleKeywordChange}
+                                            className="h-1 w-1 rounded border-gray-300"
+                                        />
+                                        {keyword} 
+                                    </label>
+                                ))
 
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        value="apparel"
-                                        checked={product.keywords.includes('apparel')}
-                                        onChange={handleKeywordChange}
-                                        className="h-1 w-1 rounded border-gray-300"
-                                    />
-                                    Apparel
-                                </label>
-
-                                <label className="flex items-center gap-2">
-                                    <input 
-                                        type="checkbox" 
-                                        value="mens" 
-                                        checked={product.keywords.includes('mens')} 
-                                        onChange={handleKeywordChange} 
-                                    />
-                                    Men's
-                                </label>
+                                }
                             </div>
                         </div>
 
