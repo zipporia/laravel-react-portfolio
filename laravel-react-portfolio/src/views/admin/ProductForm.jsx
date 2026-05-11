@@ -1,8 +1,11 @@
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import axiosClient from '../../axiosClient';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductForm() {
+
+    const navigate = useNavigate();
 
     const [product, setProduct] = useState({
         image: null,
@@ -68,6 +71,7 @@ export default function ProductForm() {
 
         axiosClient.post("/product", payload).then((res) => {
             console.log(product);
+            navigate('/store');
         })
     
     };
